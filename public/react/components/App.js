@@ -4,9 +4,22 @@ import { PagesList } from './PagesList';
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
+const openingDataOptions = {
+	title: "", 
+	author: "",
+	content: "",
+	tags: "",
+	date: "",
+
+};
+
+
 export const App = () => {
 
 	const [pages, setPages] = useState([]);
+	const [data, setData] = useState(null)
+	const [isAddingArticle, setisAddingArticle] = useState(false);
+	const [inputOptions, setInputOptions] = useState(openingDataOptions);
 
 	async function fetchPages(){
 		try {
