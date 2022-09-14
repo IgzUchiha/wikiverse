@@ -3,6 +3,7 @@ import { PagesList } from './PagesList';
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
+import { SinglePage } from './SinglePage';
 
 const openingDataOptions = {
 	title: "", 
@@ -20,7 +21,7 @@ export const App = () => {
 	const [data, setData] = useState(null)
 	const [isAddingArticle, setisAddingArticle] = useState(false);
 	const [inputOptions, setInputOptions] = useState(openingDataOptions);
-
+	console.log(pages)
 	async function fetchPages(){
 		try {
 			const response = await fetch(`${apiURL}/wiki`);
@@ -30,16 +31,33 @@ export const App = () => {
 			console.log("Oh no an error! ", err)
 		}
 	}
+	
+	async function fetchArticlleData(page) {
+		console.log(page)
+		try {
+			const res = await fetch(`${apiURL}/wiki/${page.slug}`);
+			const articleData = await res.json();
+			setData(articleData);
+		}catch (err){
+			console.log("An error has occurred!", err);
+		}
+	}
 
 	useEffect(() => {
 		fetchPages();
 	}, []);
 
 	return (
-		<main>	
+		<main>
+		data?(
+			<div>
+				<SinglePage pages={pages} data={data} setData={setData}/>
+			</div>
+		):	
+
       <h1>WikiVerse</h1>
 			<h2>An interesting 📚</h2>
-			<PagesList pages={pages} />
+			<PagesList pages={pages} fetchArticlleData={fetchArticlleData} />
 		</main>
 	)
 }
