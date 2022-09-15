@@ -32,7 +32,7 @@ export const App = () => {
 		}
 	}
 	
-	async function fetchArticlleData(page) {
+	async function fetchArticleData(page) {
 		console.log(page)
 		try {
 			const res = await fetch(`${apiURL}/wiki/${page.slug}`);
@@ -49,15 +49,17 @@ export const App = () => {
 
 	return (
 		<main>
-		data?(
+{		data ? (
 			<div>
 				<SinglePage pages={pages} data={data} setData={setData}/>
 			</div>
 		):	
-
+		<div>
       <h1>WikiVerse</h1>
 			<h2>An interesting 📚</h2>
-			<PagesList pages={pages} fetchArticlleData={fetchArticlleData} />
+			<PagesList pages={pages} fetchArticleData={fetchArticleData} />
+	   </div> }
+
 		</main>
 	)
 }
