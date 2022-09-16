@@ -1,10 +1,23 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  background-color: rgb(223, 223, 223);
+  background-color: #676a6d;
 }
 
 main {
   padding: 1rem;
+  min-height: 50vh;
+}
+/* .this{
+  position: relative;
+  left: 35rem;
+} */
+h1 , h2 , h3{
+color: #ced4da;
+}
+body{
+  display: flex;
+  justify-content: center;
+  text-align: center;
   height: 100vh;
 }
